@@ -1,0 +1,9 @@
+mkdir djangoTrade
+cd djangoTrade
+django-admin startproject stocks
+cd stocks
+code .
+python manage.py runserver (check to see if server is running)
+django-admin startapp stock
+
+
