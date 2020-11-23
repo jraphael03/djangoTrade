@@ -1,23 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Hello World!</h1>
-<br/>
-<br/>
 
-def home( request):
-    import requests
-    import json
-    
-    #pk_d498d40ec96e4e1d8bb7a6e68424254d   (iexstockAPIkey)
-    api_request = requests.get("https://cloud.iexapis.com/stable/stock/aapl/quote?token=pk_d498d40ec96e4e1d8bb7a6e68424254d")
+{% if api %}
+    {% if api == "Error..." %}
+        print("There was an issue with your ticker symbol, please try again")
+    {% else %}
 
-    try:
-        api = json.loads(api_request.content)
-    except Exception as e:
-        api = "Error..."
+        <h2>{{ api.companyName }}</h2><br/>
+        Price: ${{ api.latestPrice }}<br/>
+        Previous Close: {{ api.previousClose }}<br/>
+        Market Cap: {{ api.marketCap }}<br/>
+        YTD Change: {{ api.ytdChange }}<br/>
+        52Wk High: {{ api.week52High }}
+        52Wk Low: {{ api.week52Low }}
 
-    return render( request, 'home.html', {'api' : api})
+    {% endif %}
+{% endif %}
 
 
 {% endblock %}
