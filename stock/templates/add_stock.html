@@ -3,11 +3,18 @@
 
 <h1>Add Stock</h1>
 <br/>
-{{ticker}}
+
+<form action="{% url 'add_stock' %}" class="form-inline my-2 my-lg-0" method="POST">    <!--action chooses where this search bar will point to-->
+    {% csrf_token %}
+  <input class="form-control mr-sm-2" type="search" placeholder="Add To Portfolio" aria-label="Search" name="ticker">
+  <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Add To Portfolio</button>
+</form>
+
+<br/>
 
 {% for item in ticker %}
     {{item}}, {{price}}<br/>
-    
+
 {% endfor %}
 
 {% endblock %}
