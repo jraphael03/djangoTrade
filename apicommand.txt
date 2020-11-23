@@ -1,0 +1,20 @@
+{{ api }}
+{{ api.companyName }}
+
+[Call api, for every key and value in the api items, separate and print individual key and value pairs on screen]
+
+{% if api %}
+    {% if api == "Error..." %}
+        print("There was an issue with your ticker symbol, please try again")
+    {% else %}
+
+        {% for key, value in api.items %}  <!--.items parses all the items individually pulling out key and value-->
+            {{key}}: {{value}}<br/>
+        {% endfor %}
+
+    {% endif %}
+{% endif %}
+
+
+
+
