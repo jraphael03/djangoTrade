@@ -16,5 +16,6 @@ Connect to getAPIkey
 4.Do something with it
 
 
-
+python manage.py makemigrations stock
+python manage.py migrate
 
