@@ -2,9 +2,13 @@
 {% block content %}
 
 
+{% if ticker %}
+    {{ticker}}
+{% endif %}
+
 {% if api %}
     {% if api == "Error..." %}
-        print("There was an issue with your ticker symbol, please try again")
+        "There was an issue with your ticker symbol, please try again"
     {% else %}
 
         <h2>{{ api.companyName }}</h2><br/>
