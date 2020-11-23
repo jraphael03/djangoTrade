@@ -33,7 +33,8 @@ def about( request):
 
 def add_stock( request):
 
-    ticker = Stock.objects.all()
-    return render( request, 'add_stock.html', {'ticker' : ticker})
+    #pull object out of database
+    ticker = Stock.objects.all()    #our model is Stock
+    return render( request, 'add_stock.html', {'ticker' : ticker})  #pass in the ticker
 
 
