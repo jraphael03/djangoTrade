@@ -6,4 +6,15 @@ code .
 python manage.py runserver (check to see if server is running)
 django-admin startapp stock
 
+Create base.html
+
+getAPIkey from stock website
+Connect to getAPIkey
+1.Grab the data
+2.Bring it back into app
+3.Parse it
+4.Do something with it
+
+
+
 
