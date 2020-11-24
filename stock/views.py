@@ -44,4 +44,10 @@ def add_stock( request):
         ticker = Stock.objects.all()    #our model is Stock
         return render( request, 'add_stock.html', {'ticker' : ticker})  #pass in the ticker
 
+def delete( request, stock_id):
+    item = Stock.objects.get(pk=stock_id)   #primarykey = stock_id so we can capture specific element
+    item.delete()
+    messages.success(request, ("Stock Has Been Deleted!"))
+    return redirect(add_stock)
+
 
