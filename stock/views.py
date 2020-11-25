@@ -31,6 +31,9 @@ def about( request):
 
 
 def add_stock( request):
+    import requests
+    import json
+
     if request.method == "POST":
         form = StockForm(request.POST or None)
 
@@ -42,7 +45,17 @@ def add_stock( request):
     else:
         #pull object out of database
         ticker = Stock.objects.all()    #our model is Stock
-        return render( request, 'add_stock.html', {'ticker' : ticker})  #pass in the ticker
+        output = []   #empty list so we can append api's
+        for ticker_item in ticker:    #loops through each item and makes an api call
+            
+            api_request = requests.get("https://cloud.iexapis.com/stable/stock/" + str(ticker_item) +"/quote?token=pk_d498d40ec96e4e1d8bb7a6e68424254d")
+                
+            try:
+                api = json.loads(api_request.content)
+                output.append(api)
+            except Exception as e:
+                api = "Error..."
+        return render( request, 'add_stock.html', {'ticker' : ticker, 'output' : output})  #pass in the ticker
 
 def delete( request, stock_id):
     item = Stock.objects.get(pk=stock_id)   #primarykey = stock_id so we can capture specific element
