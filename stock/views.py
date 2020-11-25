@@ -46,7 +46,7 @@ def add_stock( request):
         #pull object out of database
         ticker = Stock.objects.all()    #our model is Stock
         output = []   #empty list so we can append api's
-        for ticker_item in ticker:    #loops through each item and makes an api call
+        for ticker_item in ticker:    #loops through each item and makes an api call for each
             
             api_request = requests.get("https://cloud.iexapis.com/stable/stock/" + str(ticker_item) +"/quote?token=pk_d498d40ec96e4e1d8bb7a6e68424254d")
                 
@@ -61,6 +61,9 @@ def delete( request, stock_id):
     item = Stock.objects.get(pk=stock_id)   #primarykey = stock_id so we can capture specific element
     item.delete()
     messages.success(request, ("Stock Has Been Deleted!"))
-    return redirect(add_stock)
+    return redirect(delete_stock)
 
 
+def delete_stock( request):
+    ticker = Stock.objects.all()    #our model is Stock
+    return render( request, 'delete_stock.html', {'ticker' : ticker})

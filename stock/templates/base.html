@@ -23,10 +23,9 @@
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'about' %}">About</a>
-              <a class="nav-link" href="{% url 'add_stock' %}">Add Stock</a>
-            </li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'add_stock' %}">Add Stock</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'delete_stock' %}">Delete Stock</a></li>
           </ul>
           <form action="{% url 'home' %}" class="form-inline my-2 my-lg-0" method="POST">    <!--action chooses where this search bar will point to-->
               {% csrf_token %}
